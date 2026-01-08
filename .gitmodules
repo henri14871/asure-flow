@@ -1,0 +1,4 @@
+[submodule "apps/asure-flow"]
+	path = apps/asure-flow
+	url = https://github.com/henri14871/asure-flow.git
+	branch = main
