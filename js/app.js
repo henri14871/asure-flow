@@ -821,6 +821,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function getSelectedMicDeviceForCompareAndSave() {
+        const selected = String(micSelect?.value || '').trim();
+        if (selected) return selected;
+        const pending = String(pendingMicDevice || '').trim();
+        return pending || null;
+    }
+
+    function getSelectedLoopbackDeviceForCompareAndSave() {
+        const selected = String(loopbackSelect?.value || '').trim();
+        if (selected) return selected;
+        const pending = String(pendingLoopbackDevice || '').trim();
+        return pending || null;
+    }
+
     function extraHeadersCompareToken() {
         const extraHeadersEl = document.getElementById('setting-extra-headers');
         const raw = String(extraHeadersEl?.value || '').trim();
@@ -872,8 +886,8 @@ document.addEventListener('DOMContentLoaded', () => {
             transcript_display_mode: document.getElementById('setting-transcript-display')?.value,
 
             // Audio
-            mic_device: micSelect?.value,
-            loopback_device: loopbackSelect?.value || null,
+            mic_device: getSelectedMicDeviceForCompareAndSave(),
+            loopback_device: getSelectedLoopbackDeviceForCompareAndSave(),
             speech_vad_enabled: !!document.getElementById('setting-vad-enabled')?.checked,
             speech_vad_threshold: parseFloat(document.getElementById('setting-vad-threshold')?.value) || 0.5,
             speech_denoise_enabled: !!document.getElementById('setting-denoise-enabled')?.checked,
@@ -1829,10 +1843,10 @@ document.addEventListener('DOMContentLoaded', () => {
             transcript_merge_window_seconds: parseFloat(document.getElementById('setting-transcript-merge-window')?.value) || 4,
             transcript_ai_mode: document.getElementById('setting-transcript-ai-mode')?.value,
             transcript_display_mode: document.getElementById('setting-transcript-display')?.value,
-            
+             
             // Audio
-            mic_device: micSelect?.value,
-            loopback_device: loopbackSelect?.value || null,
+            mic_device: getSelectedMicDeviceForCompareAndSave(),
+            loopback_device: getSelectedLoopbackDeviceForCompareAndSave(),
             speech_vad_enabled: document.getElementById('setting-vad-enabled')?.checked,
             speech_vad_threshold: parseFloat(document.getElementById('setting-vad-threshold')?.value) || 0.5,
             speech_denoise_enabled: document.getElementById('setting-denoise-enabled')?.checked,
